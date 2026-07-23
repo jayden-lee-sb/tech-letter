@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>클로드 코드 제작자 Boris Cherny가 직접 쓰는 활용법 7가지</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@_keunyoung_ · 2026-04-15 자가발송</span>
+  </div>
+  <h1>클로드 코드 제작자 Boris Cherny가 직접 쓰는 활용법 7가지</h1>
+
+  <div class="scorebar">
+    <span class="big">66</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 7/15 · 최신성 4/10 · momentum 7/10<br>깊이 9/15 · 지속가치 10/15 · 신뢰도 9/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">역발상 3가지 (Boris가 핵심으로 꼽은 것)</div>
+    <ul class="kplist">
+      <li class="note">비용 아끼려 저렴한 모델을 쓰면 역효과. 저지능 모델은 수정·개입을 늘려 결국 토큰을 더 태운다. 최상위 모델(당시 Opus 4.6 + Max effort)이 같은 작업을 더 빠르고 정확히 처리해 오히려 싸다는 게 메이커 본인의 결론.</li>
+      <li class="note">작업을 1단계·2단계로 쪼개 강제하지 말 것. 목표와 필요한 도구만 주고 순서·맥락은 모델이 스스로 잡게 두면 결과가 더 좋다. 과잉 통제가 품질을 깎는다는 관점.</li>
+      <li class="note">작업의 약 80%는 Plan mode(터미널 shift+tab 두 번)로 시작. 계획을 먼저 검토·확정하면 그다음 실행에서 거의 한 번에 맞는 코드가 나온다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">일하는 방식 (실천 팁)</div>
+    <ul class="kplist">
+      <li class="note">병렬 세션이 기본값. Boris는 상시 5개 이상 에이전트를 동시에 돌리고, 각 세션이 20~30분 자율로 도는 동안 다른 일을 한다(커피 마시러 가는 식).</li>
+      <li class="note">터미널만 고집할 필요 없음. 데스크톱·모바일·Slack 연동 등 자기에게 맞는 인터페이스를 실험. 비개발 직군에는 데스크톱 앱이 진입이 쉽다.</li>
+      <li class="note">Slack 채널·버그 리포트 스레드를 직접 읽게 연결하면 원인 분석·수정 제안·PR 작성까지 자동화. 메모리 누수 같은 문제도 모델이 자체 분석 도구를 만들어 원인을 찾는다.</li>
+      <li class="note">Co-work로 이메일 요약·Slack 발송·스프레드시트 관리 같은 비코딩 업무까지 한 프롬프트로 위임. 여러 도구가 얽힌 복합 지시도 처리한다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">루프 4단계 (Claude Code 팀의 정의)</div>
+    <ul class="kplist">
+      <li class="note">턴 기반(매 프롬프트 트리거) → 목표 기반(/goal, 완료조건 명시·평가모델이 기준 충족까지 반복) → 시간 기반(/loop·/schedule, 주기 재실행) → 능동적 루프(스케줄+목표+동적 워크플로우 결합, 버그 triage 같은 대규모 반복). &#39;프롬프트 대신 루프를 설계하라&#39;는 흐름의 뼈대.</li>
+      <li class="note">품질 유지엔 코드베이스 정돈, SKILL.md로 자체검증 체계화, 별도 에이전트의 코드리뷰가 권장. 무조건 복잡한 루프보다 작업 성격에 맞는 primitive 선택이 먼저라는 점이 실무적이다.</li>
+      <li class="note">세션 성능 저하의 원인은 컨텍스트 창 오염(세션 기록·파일 내용·명령 출력 누적). CLAUDE.md 규칙, 자동 메모리, /compact, /clear로 능동 관리하라는 처방이 함께 붙는다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">읽는 각도 (지속성 vs 유효기간)</div>
+    <ul class="kplist">
+      <li class="note">버전 종속 정보(Opus 4.6, Max effort 기본값 언급)는 이미 낡았다. 반면 &#39;플랜 먼저, 자율성 부여, 병렬화, 컨텍스트 관리&#39;라는 원칙은 버전과 무관하게 유효해 이 글의 가치가 남는 지점.</li>
+      <li class="note">정리한 작성자는 순정 사용파로, 파일당 1000라인 제한·docs 참조·프로젝트별 &#39;하지 마라&#39; 문서 같은 가벼운 자기 규칙만으로 충분하다는 반례를 덧붙인다. 하네스 과설계가 필수는 아니라는 균형추.</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@_keunyoung_/post/DXGOGzLkQpq">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · Claude Code 제작자 본인의 1차 사용 노하우라 실전 적용도·소스 신뢰도가 높고, 큐에서 가장 오래(4/15) 대기한 항목이라 선정.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt');
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ r.setAttribute('data-theme', cur()==='dark'?'light':'dark'); });
+</script>
+</body>
+</html>

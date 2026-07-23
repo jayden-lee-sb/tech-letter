@@ -1,4 +1,61 @@
 <!doctype html>
+<html lang="ko">
+<head>
 <meta charset="utf-8">
-<title>Tech Letter</title>
-<p>coming soon
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading List</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:28px 18px 60px}
+  header{margin:6px 0 22px}
+  h1{font-size:24px;margin:0 0 4px;letter-spacing:-.02em}
+  .tag{color:var(--sub);font-size:13.5px}
+  .day{font-size:12.5px;color:var(--sub);text-transform:uppercase;letter-spacing:.08em;
+    margin:26px 0 10px;font-weight:600}
+  a.card{display:block;text-decoration:none;color:inherit;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin:10px 0;
+    transition:transform .08s ease,border-color .15s}
+  a.card:active{transform:scale(.99)}
+  .meta{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;
+    background:var(--pill);color:var(--pillink)}
+  .score{margin-left:auto;font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .score b{color:var(--ink)}
+  .ttl{font-size:16.5px;font-weight:650;letter-spacing:-.01em;margin:0 0 3px;line-height:1.35}
+  .hook{font-size:14px;color:var(--sub);margin:0}
+  footer{margin-top:34px;color:var(--sub);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Reading List</h1>
+    <div class="tag">매일 큐레이션되는 AI 아티클 · 오래된 것부터 하나씩</div>
+  </header>
+
+  <div class="day">2026 · 07 · 23</div>
+
+  <a class="card" href="p/19d8cc86bc98f5a2.html">
+    <div class="meta">
+      <span class="src">threads</span>
+      <span class="score">추천도 <b>66</b></span>
+    </div>
+    <p class="ttl">클로드 코드 제작자 Boris Cherny가 직접 쓰는 활용법 7가지</p>
+    <p class="hook">Claude Code 제작자 Boris Cherny가 직접 쓰는 7가지 활용법(역발상 3가지 포함)과 팀이 정의한 &#39;루프 4단계&#39;, 그리고 순정 사용파의 미니멀 하네스 반례.</p>
+  </a>
+
+  <footer>출처: 내가 스크랩한 Gmail Inbox</footer>
+</div>
+</body>
+</html>

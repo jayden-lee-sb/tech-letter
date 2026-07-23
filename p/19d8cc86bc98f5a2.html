@@ -58,7 +58,7 @@
 <body>
 <div class="wrap">
   <div class="top">
-    <a class="back" href="index.html">← Reading List</a>
+    <a class="back" href="../index.html">← Reading List</a>
     <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
   </div>
 
@@ -70,56 +70,54 @@
 
   <div class="scorebar">
     <span class="big">66</span><span class="lbl">추천도</span>
-    <span class="dims">실용성 20/25 · 신규성 7/15 · 최신성 4/10 · momentum 7/10<br>깊이 9/15 · 지속가치 10/15 · 신뢰도 9/10</span>
+    <span class="dims">실용성 22/25 · 신규성 7/15 · 최신성 4/10 · momentum 6/10<br>깊이 10/15 · 지속가치 9/15 · 신뢰도 8/10</span>
   </div>
 
   <h2>핵심 포인트</h2>
 
   <div class="kp">
-    <div class="kpcat">역발상 3가지 (Boris가 핵심으로 꼽은 것)</div>
+    <div class="kpcat">바로 쓸 실전 팁 (메이커 권장)</div>
     <ul class="kplist">
-      <li class="note">비용 아끼려 저렴한 모델을 쓰면 역효과. 저지능 모델은 수정·개입을 늘려 결국 토큰을 더 태운다. 최상위 모델(당시 Opus 4.6 + Max effort)이 같은 작업을 더 빠르고 정확히 처리해 오히려 싸다는 게 메이커 본인의 결론.</li>
-      <li class="note">작업을 1단계·2단계로 쪼개 강제하지 말 것. 목표와 필요한 도구만 주고 순서·맥락은 모델이 스스로 잡게 두면 결과가 더 좋다. 과잉 통제가 품질을 깎는다는 관점.</li>
-      <li class="note">작업의 약 80%는 Plan mode(터미널 shift+tab 두 번)로 시작. 계획을 먼저 검토·확정하면 그다음 실행에서 거의 한 번에 맞는 코드가 나온다.</li>
+      <li class="note">최상위 모델 사용: 저가 모델은 수정·개입이 늘어 오히려 토큰을 더 씀. Opus에 Maximum effort 켜기</li>
+      <li class="note">작업 80%를 Plan mode로 시작(shift+tab 2회) → 계획 검토 후 실행하면 거의 한 번에 맞는 코드</li>
+      <li class="note">단계를 강제하지 말고 목표+도구만 주고 자율성 부여가 결과가 더 좋음</li>
+      <li class="note">에이전트 병렬 실행(Boris는 상시 5개+). 20~30분 자율 구동 사이 다른 일 처리</li>
     </ul>
   </div>
 
   <div class="kp">
-    <div class="kpcat">일하는 방식 (실천 팁)</div>
+    <div class="kpcat">확장 활용</div>
     <ul class="kplist">
-      <li class="note">병렬 세션이 기본값. Boris는 상시 5개 이상 에이전트를 동시에 돌리고, 각 세션이 20~30분 자율로 도는 동안 다른 일을 한다(커피 마시러 가는 식).</li>
-      <li class="note">터미널만 고집할 필요 없음. 데스크톱·모바일·Slack 연동 등 자기에게 맞는 인터페이스를 실험. 비개발 직군에는 데스크톱 앱이 진입이 쉽다.</li>
-      <li class="note">Slack 채널·버그 리포트 스레드를 직접 읽게 연결하면 원인 분석·수정 제안·PR 작성까지 자동화. 메모리 누수 같은 문제도 모델이 자체 분석 도구를 만들어 원인을 찾는다.</li>
-      <li class="note">Co-work로 이메일 요약·Slack 발송·스프레드시트 관리 같은 비코딩 업무까지 한 프롬프트로 위임. 여러 도구가 얽힌 복합 지시도 처리한다.</li>
+      <li class="note">터미널 고집 말고 데스크톱·모바일·Slack 등 자기 워크플로우에 맞는 인터페이스</li>
+      <li class="note">Slack·버그리포트 채널을 연결해 원인 분석→수정→PR까지 자동화</li>
+      <li class="note">Co-work로 이메일 요약·메시지 전송·스프레드시트 등 비코딩 업무도 한 프롬프트로</li>
     </ul>
   </div>
 
   <div class="kp">
-    <div class="kpcat">루프 4단계 (Claude Code 팀의 정의)</div>
+    <div class="kpcat">설계 관점 (댓글의 &#39;루프&#39; 4단계)</div>
     <ul class="kplist">
-      <li class="note">턴 기반(매 프롬프트 트리거) → 목표 기반(/goal, 완료조건 명시·평가모델이 기준 충족까지 반복) → 시간 기반(/loop·/schedule, 주기 재실행) → 능동적 루프(스케줄+목표+동적 워크플로우 결합, 버그 triage 같은 대규모 반복). &#39;프롬프트 대신 루프를 설계하라&#39;는 흐름의 뼈대.</li>
-      <li class="note">품질 유지엔 코드베이스 정돈, SKILL.md로 자체검증 체계화, 별도 에이전트의 코드리뷰가 권장. 무조건 복잡한 루프보다 작업 성격에 맞는 primitive 선택이 먼저라는 점이 실무적이다.</li>
-      <li class="note">세션 성능 저하의 원인은 컨텍스트 창 오염(세션 기록·파일 내용·명령 출력 누적). CLAUDE.md 규칙, 자동 메모리, /compact, /clear로 능동 관리하라는 처방이 함께 붙는다.</li>
+      <li class="note">턴 기반 / 목표 기반(/goal, 정량 기준일수록 효과적) / 시간 기반(/loop·/schedule) 으로 루프를 구분</li>
     </ul>
   </div>
 
   <div class="kp">
-    <div class="kpcat">읽는 각도 (지속성 vs 유효기간)</div>
+    <div class="kpcat">맥락·주의</div>
     <ul class="kplist">
-      <li class="note">버전 종속 정보(Opus 4.6, Max effort 기본값 언급)는 이미 낡았다. 반면 &#39;플랜 먼저, 자율성 부여, 병렬화, 컨텍스트 관리&#39;라는 원칙은 버전과 무관하게 유효해 이 글의 가치가 남는 지점.</li>
-      <li class="note">정리한 작성자는 순정 사용파로, 파일당 1000라인 제한·docs 참조·프로젝트별 &#39;하지 마라&#39; 문서 같은 가벼운 자기 규칙만으로 충분하다는 반례를 덧붙인다. 하네스 과설계가 필수는 아니라는 균형추.</li>
+      <li class="note">Opus 4.6 시점 자료라 모델 버전·수치는 시점 감안. 원칙(모델 신뢰·Plan·자율·병렬)은 지속 유효</li>
     </ul>
   </div>
 
   <div class="links"><a href="https://www.threads.com/@_keunyoung_/post/DXGOGzLkQpq">원문 읽기 ↗</a></div>
 
-  <div class="basis">선정 배경 · Claude Code 제작자 본인의 1차 사용 노하우라 실전 적용도·소스 신뢰도가 높고, 큐에서 가장 오래(4/15) 대기한 항목이라 선정.</div>
+  <div class="basis">선정 배경 · 메이커 1차 소스라 신뢰도·실용성 높음. 큐 최고령권(4/15)이라 age 우선으로 발행.</div>
 </div>
 
 <script>
-  var r=document.documentElement, b=document.getElementById('tt');
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
   function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
-  b.addEventListener('click', function(){ r.setAttribute('data-theme', cur()==='dark'?'light':'dark'); });
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
 </script>
 </body>
 </html>

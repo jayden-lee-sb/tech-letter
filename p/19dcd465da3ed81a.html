@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 시대에 소프트웨어 기본기가 더 중요해지는 이유 (Matt Pocock, Skills For Real Engineers)</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@unclejobs.ai · 2026-04-27 자가발송</span>
+  </div>
+  <h1>AI 시대에 소프트웨어 기본기가 더 중요해지는 이유 (Matt Pocock, Skills For Real Engineers)</h1>
+
+  <div class="scorebar">
+    <span class="big">67</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 7/15 · 최신성 5/10 · momentum 6/10<br>깊이 11/15 · 지속가치 13/15 · 신뢰도 5/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">뒤집는 전제</div>
+    <ul class="kplist">
+      <li class="note">&#34;코드는 싸졌다&#34;는 절반만 맞다. 싸진 것은 코드 생성 비용이고, 비싸진 것은 나쁜 코드를 유지하는 비용이다. 총비용의 무게중심이 생성에서 유지로 옮겨간 것뿐이다.</li>
+      <li class="note">AI가 코드베이스를 망치는 이유는 실력 부족이 아니라 속도다. 사람이 몇 달에 걸쳐 만들던 엉킴을 몇 분 만에 만든다. 좋은 구조 위에서는 같은 속도가 그대로 레버리지로 뒤집힌다.</li>
+      <li class="note">Specs to Code(코드는 안 보고 스펙만 고쳐 재생성)의 진짜 위험은 생산성 착시가 아니라 시스템 설계에서 손을 떼는 것 자체다. 반복할수록 코드가 더 엉켰다는 실측 경험이 근거다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">실패 모드 1: 의도가 안 통한다</div>
+    <ul class="kplist">
+      <li class="note">&#34;AI가 원하는 대로 안 만든다&#34;는 프롬프트 길이 문제가 아니라 공유된 설계 그림(Brooks의 design concept)이 없는 문제다. 문서 한 장으로는 생기지 않고 대화로만 맞춰진다.</li>
+      <li><a class="repo" href="https://github.com/mattpocock/skills">처방은 Grill Me 스킬. 만들기 전에 계획의 모든 부분을 집요하게 되묻게 강제하고 같은 이해에 도달할 때까지 멈추지 않게 한다. 질문이 40~100개 쏟아지는데 그 과정 자체가 설계다.</a></li>
+      <li class="note">적용 순서가 핵심이다. 인터뷰로 이해를 맞춘 뒤에야 PRD, 이슈 분할, 구현으로 내려간다. 계획부터 쓰기 시작하는 에이전트는 이미 너무 빠른 상태다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">실패 모드 2: 말은 많은데 겉돈다</div>
+    <ul class="kplist">
+      <li class="note">AI의 장황함은 도메인 전문가와 개발자 사이의 고전적 언어 문제와 같은 형태다. 공통 언어가 없으면 계속 어긋난다.</li>
+      <li class="note">처방은 DDD의 Ubiquitous Language를 코딩 에이전트에 적용하는 것. 코드베이스를 스캔해 자주 쓰는 용어를 뽑고 의미를 정리한 Markdown을 만들어 대화마다 참조시킨다.</li>
+      <li class="note">용어집을 만드는 행위가 아니라 경계를 못 박는 것이 요점이다. 이 프로젝트에서 User는 누구인지, Session은 무엇인지, Draft와 Published의 차이는 무엇인지가 흐리면 AI는 추측하고, 추측이 쌓이면 코드가 흔들린다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">실패 모드 3: 만들었는데 동작하지 않는다</div>
+    <ul class="kplist">
+      <li class="note">필요한 것은 피드백 루프다. 타입 체크, 테스트, 브라우저 확인, 런타임 검증. 프론트엔드를 만들면서 AI가 브라우저를 못 보게 하는 것이 대표적인 자충수다.</li>
+      <li class="note">&#34;피드백 속도가 곧 속도 제한&#34;이 이 글에서 가장 실무적인 문장이다. 테스트가 느리면 천천히, 검증이 부족하면 작게 간다. Pragmatic Programmer의 outrunning your headlights와 같은 구도다.</li>
+      <li class="note">그래서 TDD가 다시 살아난다. 품질 의례로서가 아니라, 기본값이 과속인 에이전트에게 작은 걸음을 강제하는 제동 장치로서다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">구조 원칙: Deep Module</div>
+    <ul class="kplist">
+      <li class="note">Ousterhout의 나쁜 코드 기준(이해하기 어렵고 수정하기 어려운 것)은 AI 시대에도 그대로다. 좋은 코드베이스는 바꾸기 쉬운 코드베이스라는 정의가 그대로 판정 기준이 된다.</li>
+      <li class="note">AI가 길을 잃는 지점은 얕은 모듈이 많은 코드베이스다. 작은 파일이 흩어지고 연결점이 많으면 올바른 변경 지점을 못 찾아 엉뚱한 파일을 고치거나 이미 있는 기능을 다시 만든다.</li>
+      <li class="note">운영 원칙은 한 줄로 요약된다. 인터페이스는 사람이 잡고 구현은 AI에게 맡긴다. 단 테스트 가능한 경계 안에서만 맡긴다.</li>
+      <li class="note">깊은 모듈은 사람의 리뷰 부하도 줄인다. 중요한 모듈만 깊게 읽고 나머지는 경계와 테스트로 본다. 전부 읽으려 하면 사람이 먼저 무너지고, 전부 맡기면 코드베이스가 무너진다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">이번 주에 바로 해볼 것</div>
+    <ul class="kplist">
+      <li class="note">PRD에 기능 설명 대신 어떤 모듈이 바뀌고 어떤 인터페이스가 수정되며 어떤 경계 안에서 구현할지를 적는다. 문서 작업이 아니라 AI에게 코드베이스 지도를 쥐여주는 일이다.</li>
+      <li class="note">AI 리뷰나 구현이 엉뚱하게 나오면 프롬프트를 고치기 전에 그 순간 무엇을 읽었는지부터 확인한다. 원인은 대개 컨텍스트 선택에 있다.</li>
+      <li><a class="repo" href="https://github.com/mattpocock/skills">오픈소스 스킬 모음(요구사항 인터뷰, 명세 작성, 티켓 생성, TDD, 버그 진단, 코드 리뷰)을 Claude Code나 Codex에 붙여 프롬프트 튜닝 대신 워크플로로 해결한다.</a></li>
+      <li><a class="repo" href="https://www.youtube.com/watch?v=v4F1gFy-hqg">원본 강연으로 맥락을 보강한다.</a></li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">읽을 때 감안할 점</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://www.aihero.dev/5-agent-skills-i-use-every-day">Threads 요약본이라 강연의 논거가 압축되어 있고, 게시물 말미는 유료 멘토링 홍보로 이어진다. 주장의 뼈대는 강연과 Matt Pocock의 공개 글에서 직접 확인하는 편이 안전하다.</a></li>
+      <li class="note">새로운 이론은 없다. APoSD, DDD, TDD, Brooks를 AI 코딩 맥락으로 재배치한 것이고, 가치는 독창성보다 적용 지점의 구체성에 있다.</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@unclejobs.ai/post/DXntgXyiVL7">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐에서 91일 대기한 최고령 항목. 특정 툴 뉴스가 아니라 에이전트 코딩의 구조적 실패 모드와 처방을 다뤄 반감기가 길고, Grill Me 인터뷰·용어집·모듈 경계 PRD처럼 이번 주에 바로 적용할 수 있는 형태로 떨어진다.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

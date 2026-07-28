@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matt Pocock이 .claude/skills 폴더를 통째로 공개했다: &#34;Real engineering, not vibe coding&#34;</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@conanssam · 2026-04-28 자가발송</span>
+  </div>
+  <h1>Matt Pocock이 .claude/skills 폴더를 통째로 공개했다: &#34;Real engineering, not vibe coding&#34;</h1>
+
+  <div class="scorebar">
+    <span class="big">58</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 7/15 · 최신성 2/10 · momentum 5/10<br>깊이 8/15 · 지속가치 10/15 · 신뢰도 6/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">무슨 일이 있었나</div>
+    <ul class="kplist">
+      <li class="note">TypeScript 교육으로 알려진 Matt Pocock이 본인이 실제로 쓰는 `.claude/skills` 폴더를 전부 공개. 게시 당시 GitHub 트렌딩 1위, 하루 +5,551개로 누적 27,702 스타.</li>
+      <li class="note">레포 슬로건이 곧 주장이다. &#34;Real engineering, not vibe coding&#34;, 즉 분위기로 LLM에 던지지 말고 절차를 가진 엔지니어링을 하라는 것.</li>
+      <li><a class="repo" href="https://jkf87.github.io/mattpocock-skills-real-engineers-claude-2026-04-27">한국어 상세 리뷰가 함께 정리돼 있다(코난쌤 블로그).</a></li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">스킬 구성 (총 22개, 4 카테고리)</div>
+    <ul class="kplist">
+      <li class="note">Planning: `to-prd`, `to-issues`, `grill-me`, `design-an-interface`, `request-refactor-plan`. 코드를 짜기 전 단계를 스킬로 고정한 쪽이 절반 가까이 된다.</li>
+      <li class="note">Development: `tdd`, `triage-issue`, `improve-codebase-architecture`, 그리고 댓글에서 언급된 `diagnosing-bugs` 같은 단계적 진단 루프.</li>
+      <li class="note">Tooling: `setup-pre-commit`, `git-guardrails-claude-code`. 에이전트가 저지를 수 있는 사고를 커밋 훅·git 가드레일로 사전 차단하는 쪽.</li>
+      <li class="note">Writing: `write-a-skill`, `edit-article`, `ubiquitous-language`, `obsidian-vault`. 스킬을 만드는 스킬이 들어 있는 게 포인트.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">핵심은 grill-me, 칭찬 루프를 깨는 장치</div>
+    <ul class="kplist">
+      <li class="note">`grill-me`는 내가 세운 계획을 LLM이 끝까지 추궁하게 만드는 스킬. 기본 상태의 코딩 에이전트가 사용자 계획을 대체로 승인해주는 패턴을 의도적으로 뒤집는다.</li>
+      <li class="note">실무적 의미: 에이전트의 실패는 대개 구현이 아니라 요구사항이 덜 닫힌 상태에서 시작되는 데서 나온다. 심문 단계를 별도 스킬로 분리하면 그 비용이 착수 전으로 앞당겨진다.</li>
+      <li class="note">같은 계열로 문서를 물려주고 캐묻게 하는 `grill-with-docs`가 언급된다. 계획 검증을 문서 근거와 묶는 변형.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">바로 해볼 것</div>
+    <ul class="kplist">
+      <li class="note">설치는 한 줄. `npx skills@latest add mattpocock/skills/&lt;이름&gt;`. 전부 받지 말고 `grill-me`, `tdd`, `git-guardrails-claude-code` 정도만 먼저 붙여 보고 내 루프에 맞는지 본다.</li>
+      <li class="note">남의 스킬을 그대로 쓰는 것보다, `write-a-skill`로 내 반복 절차(리뷰 게이트, 배포 체크리스트)를 스킬로 굳히는 쪽이 회수가 크다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">반론과 유의점</div>
+    <ul class="kplist">
+      <li class="note">댓글의 반론이 타당하다. &#34;플랜 모드 쓰고 바로 구현하면 되지 별도 PRD가 필요한가.&#34; 스킬화의 이득은 절차가 반복될 때만 생기고, 1회성 작업에는 오히려 오버헤드다.</li>
+      <li class="note">숫자는 걸러 읽자. 본문은 누적 27,702 스타인데 댓글에는 5개월 만에 17만이라는 수치가 섞여 있다. 서로 맞지 않으니 인용할 거면 레포에서 직접 확인할 것.</li>
+      <li class="note">부수적으로 오간 CLI 논의가 의외로 쓸 만하다. GUI는 결과만 남기고 CLI는 과정을 남기므로, 방금 무엇을 했는지를 에이전트에게 그대로 넘길 수 있다는 것. 스킬·절차 중심 워크플로우가 왜 터미널로 수렴하는지에 대한 설명이 된다.</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@conanssam/post/DXo7ZITGNbz">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐에서 가장 오래된 항목(4/28 수신, 91일 경과)이라 age cap 규칙으로 선정. 시점은 지났지만 절차 중심 에이전트 사용이라는 멘탈모델과 바로 설치 가능한 스킬 목록이 남는다.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anthropic 엔지니어 2명이 직접 만든 프롬프팅 워크숍 (Prompting 101)</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">x</span>
+    <span class="tag">@namcios · 2026-05-01 자가발송</span>
+  </div>
+  <h1>Anthropic 엔지니어 2명이 직접 만든 프롬프팅 워크숍 (Prompting 101)</h1>
+
+  <div class="scorebar">
+    <span class="big">62</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 6/15 · 최신성 2/10 · momentum 4/10<br>깊이 10/15 · 지속가치 12/15 · 신뢰도 8/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">실체 확인</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://www.youtube.com/watch?v=ysPbXH0LpIE">메일에 담긴 링크는 포르투갈어 홍보 트윗이고, 실제 자료는 Anthropic Applied AI 팀의 Hannah Moran·Christian Ryan이 Code w/ Claude에서 발표한 24분 52초 세션 &#39;Prompting 101&#39;이다.</a></li>
+      <li class="note">돌아다니는 &#39;40가지 테크닉&#39; 표현은 홍보 과정에서 붙은 각색이다. 실제 구성은 프롬프트를 10개 블록으로 쪼개고, 보험 청구 심사라는 실제 고객 사례 하나를 v1에서 v5까지 눈앞에서 고쳐 나가는 방식이다.</li>
+      <li class="note">슬라이드 낭독이 아니라 콘솔 실행 데모다. 매 버전마다 Claude 출력이 어떻게 달라지는지를 그대로 보여주므로, 프롬프트 한 줄이 만드는 행동 변화를 관찰할 수 있는 자료로서 가치가 있다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">프롬프트 10블록 구조</div>
+    <ul class="kplist">
+      <li class="note">권장 순서는 (1) 태스크·역할 정의를 맨 앞에, (2) 동적 콘텐츠(이미지·검색 결과 등), (3) 단계별 상세 지시, (4) 예시, (5) 마지막에 핵심 제약 재반복 후 &#39;이제 작업하라&#39;로 닫는 형태다.</li>
+      <li class="note">API 단발 호출을 전제로 설계한다는 점이 핵심이다. 챗봇처럼 주고받으며 고칠 수 없으니, 한 번에 맞히도록 정보를 배치하는 문제로 프롬프팅을 정의한다.</li>
+      <li class="note">톤 지시는 문체 취향이 아니라 안전장치로 쓴다. &#39;확신하지 못하면 판단하지 말라&#39;는 한 문장이 v1의 엉뚱한 추측을 v2에서 판단 보류로 바꿨다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">불변 정보는 system prompt로</div>
+    <ul class="kplist">
+      <li class="note">매 호출마다 동일한 정보(17행 스웨덴 사고신고서의 열·행 의미, 양식 해석 규칙)는 system prompt에 박아둔다. 그러면 Claude가 매번 양식 구조를 스스로 해독하며 토큰과 정확도를 낭비하지 않는다.</li>
+      <li class="note">&#39;사람이 손으로 채우므로 X 대신 동그라미·낙서일 수 있다&#39; 같은 데이터 품질 정보까지 미리 넣는 것이 실전 포인트다. 모델이 모르는 것은 지능 부족이 아니라 맥락 부재인 경우가 많다.</li>
+      <li class="note">이 블록은 항상 동일하므로 prompt caching의 1순위 대상이라고 명시했다. 구조 설명을 캐시 경계와 맞춰 설계하면 비용과 지연이 같이 떨어진다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">v1에서 v5까지의 개선 궤적</div>
+    <ul class="kplist">
+      <li class="note">v1(맥락 없음): Claude가 자동차 사고를 스키 사고로 읽었다. 발표자들은 이를 모델 실수가 아니라 무대 설정 실패로 규정한다.</li>
+      <li class="note">v2(역할·톤 추가): 차량 사고로 정정하고 체크박스 1번과 12번을 찾아냈지만, 정보 부족으로 과실 판단은 보류했다. 의도된 보류다.</li>
+      <li class="note">v3(양식 지식을 system prompt로): 양식 해독 서술이 사라지고 vehicle B 과실이라는 확정 판단이 나왔다.</li>
+      <li class="note">v4(분석 순서 지정): 판단 근거를 체크박스 단위로 제시하기 시작했다. v5(출력 포맷 고정): final_verdict 태그만 파싱하면 되는 형태로 정리됐다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">순서 지정이 정확도를 만든다</div>
+    <ul class="kplist">
+      <li class="note">가장 실질적인 발견은 정보를 읽는 순서를 지시한 대목이다. 사람도 스케치를 먼저 보지 않는다. 양식을 먼저 읽어 사실 목록을 만들고, 그 이해를 들고 스케치를 대조하게 시켰다.</li>
+      <li class="note">입력이 흐릿할수록(그림이 불명확, 양식이 애매) 이 단계 분할이 정답률을 좌우한다고 발표자들이 직접 못 박았다. 멀티모달 판독 태스크를 다룬다면 그대로 옮겨 쓸 수 있는 패턴이다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">출력 통제 3단</div>
+    <ul class="kplist">
+      <li class="note">XML 델리미터를 markdown보다 선호하는 이유를 명시했다. 태그에 이름을 붙일 수 있어 프롬프트 뒷부분에서 되짚어 참조하기 쉽고, 모델이 그 형식으로 파인튜닝돼 있다.</li>
+      <li class="note">환각 방지는 마지막 guidelines 블록에서 처리한다. 확신 없으면 모른다고 말하게 하고, 사실 주장마다 &#39;2번 박스가 명확히 체크됨&#39; 같은 근거를 함께 대게 한다.</li>
+      <li class="note">prefill(응답 첫 토큰을 대신 써주기)로 preamble을 잘라내고 JSON이나 특정 태그를 강제할 수 있다. 다만 preamble 자체가 추론 유도 장치이므로 무조건 제거하는 것이 이득은 아니라고 단서를 달았다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">extended thinking의 실전 용법</div>
+    <ul class="kplist">
+      <li class="note">extended thinking을 결과 개선 스위치가 아니라 진단 계기로 쓴다. thinking 트랜스크립트를 읽어 Claude가 데이터를 실제로 어떤 경로로 훑는지 확인하는 용도다.</li>
+      <li class="note">그 경로가 쓸 만하면 system prompt의 명시적 절차로 승격시킨다. 매번 모델이 재발견하지 않게 되므로 토큰 효율과 안정성이 함께 올라간다. &#39;프롬프트 엔지니어링의 목발&#39;이라는 표현을 썼다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">부작용과 한계</div>
+    <ul class="kplist">
+      <li class="note">지시는 곧 출력 분량이다. &#39;각 박스를 아주 꼼꼼히 확인하라&#39;고 쓴 순간 Claude가 박스마다 체크 여부를 나열하기 시작했고, 발표자도 &#39;원하는 게 이게 아니면 그 지시를 걷어야 한다&#39;고 인정했다.</li>
+      <li><a class="repo" href="https://www.youtube.com/watch?v=XSZP9GhhuAc">2025년 5월 행사 자료로 Claude 3.7·4 기준이다. 도구 호출·에이전트 루프 프롬프팅은 이 세션 범위 밖이며 별도 세션에서 다룬다. 여기서 얻을 것은 테크닉 목록이 아니라 구조 설계 원칙이다.</a></li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://x.com/namcios/status/2049838560623448237">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐에서 가장 오래 대기한 항목(89일)이고, 링크 자체는 홍보성이지만 그 뒤에 Anthropic 1차 자료가 있어 실제 내용을 확인해 정리했다.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

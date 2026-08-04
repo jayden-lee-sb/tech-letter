@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zed의 Terminal Threads: 요금제 한 줄이 에디터와 터미널의 경계를 밀었다</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@unclejobs.ai · 2026-05-22 자가발송</span>
+  </div>
+  <h1>Zed의 Terminal Threads: 요금제 한 줄이 에디터와 터미널의 경계를 밀었다</h1>
+
+  <div class="scorebar">
+    <span class="big">65</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 10/15 · 최신성 3/10 · momentum 7/10<br>깊이 11/15 · 지속가치 9/15 · 신뢰도 5/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">무엇이 생겼나</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://zed.dev/blog/terminal-threads">Zed가 Terminal Threads를 붙였다. 에디터 사이드바 안에서 claude, codex cli, opencode, cursor agent 같은 CLI 에이전트를 실제 터미널 프로세스로 띄운다. 프로토콜을 경유하지 않으니 평소 쓰던 스킬·훅·서브에이전트·`~/.claude`의 MCP 서버 설정이 하나도 깎이지 않고 그대로 들어온다.</a></li>
+      <li class="note">노리는 자리가 명확하다. 멀티 세션(한쪽은 기능 구현, 한쪽은 버그, 한쪽은 테스트)이 기본값이 된 지금, Electron 기반 에디터의 메모리가 병목이라는 것. 글은 Antigravity가 유휴 상태로도 램 1GB 초과, Cursor는 긴 세션에서 보조 프로세스만 7GB를 넘겼다는 사용자 보고를 든다. 에이전트마다 자기 언어 서버 프로세스를 따로 띄우는 구조가 원인이다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">진짜 포인트: 기능이 아니라 과금이 통합 방식을 정했다</div>
+    <ul class="kplist">
+      <li class="note">Anthropic이 6월 15일부터 구독 사용량 풀을 쪼갰다. Agent SDK, `claude -p`, GitHub Actions, 그리고 구독 인증을 거치는 서드파티 에이전트가 풀에서 빠져 별도 크레딧으로 넘어가고, 그 크레딧은 API 정가로 깎인다(Pro 약 29,200원, Max 5x 약 146,000원, Max 20x 약 292,000원어치). 반대로 터미널에서 대화형으로 쓰는 Claude Code는 그대로 구독 안에 남는다.</li>
+      <li><a class="repo" href="https://zed.dev/blog/terminal-threads">그래서 Zed에서 ACP로 Claude Code를 붙여 쓰던 경로는 &#39;프로그램을 경유하는 사용&#39;으로 분류돼 크레딧 쪽으로 넘어간다. Zed는 자사 블로그에서 이 경로가 헤비 유저 기준 15배에서 30배까지 비싸진다고 적었다.</a></li>
+      <li class="note">결론이 여기서 나온다. 기존 Claude 구독을 그대로 쓰면서 Zed에서 Claude Code를 굴리는 길은 Terminal Threads 하나다. 즉 이 기능은 신기술이나 기능 욕심에서 나온 게 아니라 요금제를 가르는 한 줄이 끌어낸 것이다. 도구의 모양을 바꾸는 손이 항상 기술 쪽에 있지는 않다는 사례로 읽을 값이 있다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">ACP 대 직접 터미널, 트레이드오프</div>
+    <ul class="kplist">
+      <li class="note">Zed는 ACP를 버리는 구도가 아니라고 선을 그었다. ACP로 연결한 에이전트는 편집·리뷰 흐름에 더 깊게 붙고(diff 펼치기, 파일 트리, 문서 병렬 확인), Terminal Threads는 자유도와 무손실 호환을 준다. 깊은 통합이냐 원본 그대로냐의 선택으로 정리된다.</li>
+      <li class="note">ACP를 연동 계층으로 보는 시각은 에디터 밖에서도 반복된다. 같은 글타래에 붙은 다른 논의는 Cursor·Codex·Claude Code 사이 핸드오프를 다루면서, 도구마다 어댑터를 새로 만들지 않으려고 ACP를 통합 계층으로 쓰는 방안을 검토한다. 넘길 상태는 세 묶음(AGENTS.md 같은 저장소 장기 맥락, git과 작업 트리의 실제 상태, 이전 에이전트와의 대화·진행 상황)으로 나누고, 두 번째 에이전트는 코드를 쓰기 전에 현재 diff·미커밋 파일·미실행 테스트를 확인했다는 기록을 남긴다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">반대 의견도 있었다</div>
+    <ul class="kplist">
+      <li class="note">댓글에서 갈린 지점. Zed를 쓰다 Warp로 옮긴 쪽은 &#39;에디터는 에디터 기능에 충실해야 하는데 에이전트 뷰가 들어와 어지럽다&#39;, &#39;가벼움이 매력이었는데 점점 무거워진다&#39;고 짚는다. 편의성이 VS Code를 못 따라온다는 지적도 나온다. 가벼움을 명분으로 들어온 기능이 정확히 그 가벼움을 깎을 수 있다는 반론이다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">지금 뭘 할까</div>
+    <ul class="kplist">
+      <li class="note">이 글은 2026-05-22 시점이라 언급된 6월 15일 개편은 이미 적용된 상태다. Zed나 다른 에디터에서 구독 인증으로 에이전트를 붙여 쓰고 있다면, 사용량이 구독 풀이 아니라 크레딧으로 빠지고 있는지 먼저 확인하는 게 순서다. 붙이는 방식만 바꿔도 요금 구간이 달라진다.</li>
+      <li><a class="repo" href="https://zed.dev/blog/terminal-threads">원문(Zed 공식 블로그)에서 Terminal Threads 설정과 지원 에이전트 목록을 직접 확인하는 편이 정확하다.</a></li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@unclejobs.ai/post/DYotFGYCfy4">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐 최고령(74일) 항목. 요금제 변경이 도구 통합 방식을 강제한 구조를 수치와 1차 출처로 짚어, 지금도 확인할 실무 판단이 남아 있다.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

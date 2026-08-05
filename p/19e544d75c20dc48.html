@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub n8n 자동화 워크플로 모음집 5선</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@k1utch_ai · 2026-05-23 자가발송</span>
+  </div>
+  <h1>GitHub n8n 자동화 워크플로 모음집 5선</h1>
+
+  <div class="scorebar">
+    <span class="big">51</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 6/15 · 최신성 3/10 · momentum 5/10<br>깊이 5/15 · 지속가치 8/15 · 신뢰도 4/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">레포 5개, 각각 다른 용도</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://github.com/Zie619/n8n-workflows">Zie619/n8n-workflows (Star 54,630): n8n 공식 사이트의 워크플로 전부 + 저자가 따로 수집한 것까지 한 레포에 밀어넣은 최대 규모 덤프. 양은 압도적이지만 분류가 얕아 탐색 비용이 큼.</a></li>
+      <li><a class="repo" href="https://github.com/enescingoz/awesome-n8n-templates">enescingoz/awesome-n8n-templates (Star 22,381): 280여 개를 폴더별로 정리. 목적이 뚜렷할 때 가장 빨리 찾히는 쪽.</a></li>
+      <li><a class="repo" href="https://github.com/restyler/awesome-n8n">restyler/awesome-n8n (Star 2,882): 워크플로가 아니라 커뮤니티 노드 5,834개를 다운로드 순으로 정리한 인덱스. WhatsApp 자동화, PDF 생성, Firecrawl 스크래퍼 같은 통합이 이미 있는지 확인하는 용도.</a></li>
+      <li><a class="repo" href="https://github.com/lucaswalter/n8n-ai-automations">lucaswalter/n8n-ai-automations: AI 에이전트 워크플로만 골라낸 선별본. LLM 노드가 들어가는 구성만 볼 때 노이즈가 적음.</a></li>
+      <li><a class="repo" href="https://github.com/Danitilahun/n8n-workflow-templates">Danitilahun/n8n-workflow-templates: 2,053개를 검색 가능한 형태로 정리. 키워드로 훑는 진입점.</a></li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">어떻게 골라 쓸까</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://github.com/restyler/awesome-n8n">&#39;워크플로 찾기&#39;와 &#39;노드(통합) 찾기&#39;는 다른 문제다. restyler만 후자를 담당하므로 나머지 4개와 용도가 겹치지 않는다. 새 자동화를 설계하기 전 &#39;이 서비스 노드가 존재하나?&#39;는 여기서 먼저 확인하는 게 순서.</a></li>
+      <li class="note">Star 수 순서로 접근하는 건 함정. 54k 레포는 사실상 덤프라 원하는 걸 찾는 데 시간이 더 든다. 목적이 분명하면 폴더 분류(enescingoz)나 검색(Danitilahun)부터 열고, 그래도 없을 때 최대 규모로 내려가는 순서가 낫다.</li>
+      <li class="note">템플릿은 그대로 임포트할 대상이 아니라 노드 구성 참고용으로 보는 편이 안전하다. 크리덴셜 매핑, 에러 핸들링, per-item 실행 모델(배열이 아이템 단위로 흐르는 부분)은 어차피 직접 손봐야 하고, 여기서 조용히 깨지는 경우가 대부분이다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">같은 피드에서 같이 걸린 것 (부록)</div>
+    <ul class="kplist">
+      <li class="note">LangChain OpenWiki: GitHub 저장소를 읽어 위키를 만들고 매일 변경분만 자동 갱신. 프로그램은 MIT 무료지만 문서를 쓰는 모델 사용료는 각자 API 키로 부담.</li>
+      <li><a class="repo" href="https://github.com/kenn-io/agentsview">kenn-io/agentsview: Claude Code·Codex·Cursor·Gemini CLI·OpenCode 세션을 자동 수집해 대화 검색, 토큰·비용 통계, 변경 파일 추적을 로컬 웹 UI와 CLI로 제공. 기본은 SQLite FTS5 전문 검색이고, OpenAI 호환 임베딩을 붙이면 의미 검색과 하이브리드 검색까지.</a></li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@k1utch_ai/post/DYqujwtEa75?xmt=AQG0rgJqBzfOBB8UNxLnmQiz4FSQ31i5AFRx26_1R6JAuhhBw3etNRIHJmDtk_3ol9sZBLZX&amp;slof=1">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐 최고령 74일 항목이라 14일 하드 캡으로 우선 발행. 깊이는 얕지만 n8n을 실제로 굴리는 입장에서 실행성이 높음.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 코드 리뷰어를 직접 만들기 전에: Google eng-practices의 12개 검토 축</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@qjc.ai · 2026-05-28 자가발송</span>
+  </div>
+  <h1>AI 코드 리뷰어를 직접 만들기 전에: Google eng-practices의 12개 검토 축</h1>
+
+  <div class="scorebar">
+    <span class="big">64</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 7/15 · 최신성 3/10 · momentum 5/10<br>깊이 9/15 · 지속가치 13/15 · 신뢰도 7/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">핵심 주장</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://github.com/google/eng-practices">AI 코드 리뷰어의 룰을 백지에서 짜는 건 낭비다. Google이 2019-09-05에 공개한 `google/eng-practices`(star 20.4k, CC-By 3.0)가 이미 6년 넘게 검증된 리뷰 표준으로 존재한다.</a></li>
+      <li><a class="repo" href="https://google.github.io/eng-practices/">문서가 리뷰어 가이드(6챕터)와 작성자 가이드(3챕터)로 갈려 있다. &#39;어떻게 리뷰할 것인가&#39;와 &#39;어떻게 리뷰받을 것인가&#39;가 분리돼 있어서, 에이전트에 주입할 부분(리뷰어 쪽)과 사람이 지킬 부분(작성자 쪽)을 골라 쓰기 쉽다.</a></li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">모든 세부 룰 위에 있는 한 줄</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://google.github.io/eng-practices/review/reviewer/standard.html">상위 원칙은 &#39;코드가 완벽하지 않아도 code health를 개선한다면 승인하라&#39;. 완벽주의가 아니라 점진적 개선이 기준이고, Google 내부에서도 이 한 줄이 나머지 모든 규칙보다 우선한다.</a></li>
+      <li class="note">이 원칙은 사람보다 LLM 리뷰어에 더 필요하다. 승인 조건을 명시하지 않으면 모델은 지적 개수로 성실함을 증명하려 들고, 결과적으로 머지를 막지 않는 nitpick만 쏟아낸다. 프롬프트에 검토 항목만 넣고 승인 기준을 빼면 그 실패로 직행한다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">프롬프트에 그대로 붙이는 12개 축</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://google.github.io/eng-practices/review/reviewer/looking-for.html">Design, Functionality, Complexity, Tests, Naming, Comments, Style, Consistency, Documentation, Every Line, Context, Good Things. 리뷰 시 무엇을 보는지가 12개로 고정돼 있어서 체크리스트 형태로 바로 이식된다.</a></li>
+      <li class="note">12개 중 diff만 줘서는 에이전트가 못 채우는 항목이 Context와 Good Things다. 변경의 상위 맥락(왜 이 방향인지)과 칭찬할 지점은 코드에 안 적혀 있으니, 이슈 링크나 설계 배경을 별도 입력으로 넣어야 그 두 축이 살아난다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">에이전트에 붙이는 방법</div>
+    <ul class="kplist">
+      <li class="note">네 가지 경로: Claude Skill로 패키징(SKILL.md frontmatter), Cursor `.cursorrules`에 발췌 삽입, 시스템 프롬프트 직접 주입, GitHub Actions에서 LLM API 호출.</li>
+      <li><a class="repo" href="https://github.com/google/eng-practices">라이선스가 CC-By 3.0이라는 게 실질적인 핵심이다. 출처 표기만 하면 발췌·번안·상업적 재가공까지 합법이라, 사내 리뷰 규범 문서로 번역해 두거나 프롬프트에 잘라 넣는 것 모두 문제없다.</a></li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">그대로 옮기면 안 되는 부분</div>
+    <ul class="kplist">
+      <li class="note">&#39;리뷰 응답 1 business day&#39; 같은 속도 SLA는 사람 조직의 규범이라 에이전트 프롬프트에 넣을 의미가 없다. 프롬프트에서는 빼고, 사람 리뷰어 대기시간을 재는 지표로만 남겨두는 게 맞다.</li>
+      <li><a class="repo" href="https://abseil.io/resources/swe-book/html/ch09.html">이 문서의 암묵적 전제는 &#39;리뷰 단위 = 사람이 손으로 쓴 CL&#39;이다. 에이전트가 한 번에 수십 파일을 바꾸는 변경은 전제에 없으니, 변경 분할이나 리뷰 범위 축소 규칙은 별도로 얹어야 한다.</a></li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@qjc.ai/post/DY2PFwDk4P0">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐 최고령(70일) 항목이면서, 리뷰 기준은 모델이 바뀌어도 계속 쓰이는 기초 자산이라 소진 대상으로 발행</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peter Steinberger가 공개한 &#39;루프&#39;의 실물: 코드가 아니라 문서 두 장</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@unclejobs.ai · 2026-06-12 자가발송</span>
+  </div>
+  <h1>Peter Steinberger가 공개한 &#39;루프&#39;의 실물: 코드가 아니라 문서 두 장</h1>
+
+  <div class="scorebar">
+    <span class="big">73</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 20/25 · 신규성 12/15 · 최신성 4/10 · momentum 6/10<br>깊이 12/15 · 지속가치 13/15 · 신뢰도 6/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">무엇이 공개됐나</div>
+    <ul class="kplist">
+      <li class="note">OpenClaw 창시자이자 현 OpenAI 개인 에이전트 리드인 Peter Steinberger가 &#34;에이전트에 프롬프트하지 말고, 에이전트에 프롬프트할 루프를 설계하라&#34;는 자기 주장의 실물을 깃허브에 올렸다.</li>
+      <li class="note">실체는 프레임워크도 코드도 아니고 SKILL.md 문서 두 장이다. 변수도 함수도 없는 순수 산문.</li>
+      <li><a class="repo" href="https://github.com/steipete/agent-scripts/blob/main/skills/maintainer-orchestrator/SKILL.md">maintainer-orchestrator: 오케스트레이터가 5분마다 깨어나 repo 큐를 훑고 워커 스레드에 일감을 배분하는 본체 스킬.</a></li>
+      <li><a class="repo" href="https://github.com/steipete/agent-scripts/blob/main/skills/github-project-triage/SKILL.md">github-project-triage: 큐에 쌓인 이슈·PR을 분류하는 짝 스킬.</a></li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">루프의 골격: 5분마다 도는 공장장</div>
+    <ul class="kplist">
+      <li class="note">오케스트레이터 하나가 5분 주기로 라인을 순회하며 일감을 세 갈래로 가른다. 자율 처리 가능, 오너 결정 필요, 오너가 명시적으로 제외한 것.</li>
+      <li class="note">자율 건은 워커에 분배하고, 잘 도는 워커는 건드리지 않으며, 막힌 워커에만 개입한다. 일부는 사람 손 없이 머지까지 간다.</li>
+      <li class="note">핵심 성질은 &#39;순회하되 참견하지 않는다&#39;. 폴링 주기 자체가 개입 빈도의 상한이 된다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">문서의 절반은 금지문이다</div>
+    <ul class="kplist">
+      <li class="note">워커의 서브위임 금지가 모든 워커 프롬프트에 명문화돼 있다. 워커가 부하를 만들어 팬아웃이 폭발하는 것을 구조적으로 막는다.</li>
+      <li class="note">잘 도는 워커에 말 걸기 금지, 과업 재설명 금지, 작업 중 기준 상향 금지. 마이크로매니징 방지를 사람의 선의가 아니라 문서 조항으로 박아뒀다.</li>
+      <li class="note">권한이 조회·수정·푸시·머지·릴리스로 전부 분리돼 있다. 원문 표현: 푸시 허가는 머지 허가를 의미하지 않는다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">가장 베껴갈 만한 대목: 오너 질문의 4지선다</div>
+    <ul class="kplist">
+      <li class="note">에이전트가 사람에게 올릴 수 있는 질문 형식이 넷으로 규격화돼 있다. 준비된 PR 승인, 반려, 정확히 하나의 권한 부여, 문서화된 대안 중 선택.</li>
+      <li class="note">거친 이슈를 들고 와 &#34;이거 어떻게 할까요&#34;라고 묻는 것은 규칙 위반이다. 결정을 요청하려면 재현·수정·테스트·CI 초록불까지 끌고 와 결재 가능한 상태로 만들어야 한다.</li>
+      <li class="note">보고 양식도 고정이다. 링크, 쉬운 말 설명, 왜 지금인지, 증거, 트레이드오프, 그리고 추천 의견. 추천은 선택이 아니라 의무다.</li>
+      <li class="note">원문의 못: 기술 분석을 오너에게 떠넘기지 마라. 위임이 끝까지 가면 오너 책상에는 도장만 찍으면 되는 서류만 올라온다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">검증 조항: 가짜 증거 차단</div>
+    <ul class="kplist">
+      <li class="note">머지 전 살아 있는 증거가 필수다. 목업·픽스처·문서는 증거를 보완할 뿐 대체하지 못한다고 못 박혀 있다.</li>
+      <li class="note">외부 서비스 연동이면 진짜 계정으로 진짜 호출을 날려야 한다. 테스트 통과는 시연이 아니다.</li>
+      <li class="note">기여자 신뢰에 대한 조항: 신뢰를 증거로 취급하지 마라. 신뢰는 검토의 깊이를 바꿀 뿐 옳고 그름을 바꾸지 않는다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">가져갈 결론</div>
+    <ul class="kplist">
+      <li class="note">판(5분 주기), 금지(권한 분리와 금지문), 기록(영구 로그와 VISION.md). 세 조각이 한 사람의 실물 시스템에서 동시에 돌아간다.</li>
+      <li class="note">&#34;루프를 설계하라&#34;는 프로그래밍 능력을 요구하는 말이 아니었다. 일이 돌아가는 규칙을 오해의 여지없이 적으라는 뜻이고, 그건 글쓰기 기술이다.</li>
+      <li class="note">단, 이 스킬은 신규 개발이 아니라 운영 중인 repo의 유지보수 프로세스를 전제로 한다. 적용하려면 과업을 먼저 vertical slice로 잘라둬야 한다는 지적이 댓글에서 나왔다.</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@unclejobs.ai/post/DZc1iUcCcIi">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐에서 가장 오래 대기한 항목(59일). 원문 SKILL.md 링크가 붙어 있어 바로 참고 가능하고, 위임 문서 설계 원칙이라 유효기간이 길다.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

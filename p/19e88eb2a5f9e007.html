@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>oh-my-pi: 셸아웃을 없앤 Rust 터미널 코딩 에이전트</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@think.5x · 2026-06-03 자가발송</span>
+  </div>
+  <h1>oh-my-pi: 셸아웃을 없앤 Rust 터미널 코딩 에이전트</h1>
+
+  <div class="scorebar">
+    <span class="big">58</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 17/25 · 신규성 10/15 · 최신성 4/10 · momentum 7/10<br>깊이 7/15 · 지속가치 9/15 · 신뢰도 4/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">무엇인가</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://github.com/can1357/oh-my-pi">can1357/oh-my-pi. Rust로 짠 터미널 AI 코딩 에이전트. 27,000줄 Rust 코어 위에 TypeScript 레이어를 얹은 구조다.</a></li>
+      <li class="note">리포 자체 태그라인은 &#39;hash-anchored edits, optimized tool harness, LSP, Python, browser, subagents&#39;. 즉 파는 지점이 모델이 아니라 도구 하네스다.</li>
+      <li class="note">Anthropic·OpenAI·Gemini 포함 40개 이상 프로바이더를 멀티모델 라우팅으로 붙인다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">설계 포인트: 셸아웃을 지웠다</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://github.com/can1357/oh-my-pi/tree/main/crates">핵심 주장은 &#39;외부 셸 명령 없이 내장 도구 32개로 처리&#39;인데, 이게 마케팅 문구가 아니다. 리포의 pi-builtins 크레이트가 mkdir·sort·wc·stat·find·mv·rm·ps·pgrep·kill·top·timeout·rg를 Rust로 직접 구현해 두고 있다.</a></li>
+      <li class="note">왜 중요한가: 에이전트가 매 스텝 프로세스를 fork하지 않으니 지연이 줄고, 도구 출력 포맷이 OS·배포판별로 흔들리지 않는다. 파싱 실패로 생기는 에이전트 오작동의 큰 축이 사라진다.</li>
+      <li class="note">대가도 분명하다. coreutils를 재구현한다는 건 그 플래그 호환성을 평생 떠안는다는 뜻이고, 실제로 최근 커밋도 win32 빌드에서 프로세스 계열 빌트인이 통째로 컴파일에서 빠졌던 사고를 고치고 있다.</li>
+      <li class="note">&#39;hash-anchored edits&#39;는 파일 수정 시 대상 구간의 해시를 앵커로 잡는 방식. 줄 번호 기반 패치가 중간에 파일이 바뀌면 엉뚱한 곳을 때리는 문제에 대한 대응으로 읽힌다.</li>
+      <li class="note">LSP 연동·DAP 디버거·AST 기반 구조적 변환이 기본 탑재. grep과 문자열 치환으로 리팩터링하는 에이전트와는 접근이 다르다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">마이그레이션 설계</div>
+    <ul class="kplist">
+      <li class="note">`.claude`, `.cursor`, `.windsurf` 설정 파일을 자동 상속한다. 신규 에이전트 툴의 최대 장벽이 &#39;규칙·컨텍스트 다시 쓰기&#39;인데 그걸 통째로 우회하는 선택이다.</li>
+      <li class="note">서브에이전트를 격리 워커에서 병렬로 돌리고 스키마 검증된 결과만 돌려준다. 서브에이전트 출력이 자유 텍스트라 상위가 다시 파싱해야 하는 문제를 계약으로 막는 쪽.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">2개월 뒤 실측</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://github.com/can1357/oh-my-pi">원문은 6월 3일 기준 9천 스타라고 했다. 8월 10일 현재 23.3k 스타, 2.2k 포크, 커밋 17,506개. 소개글이 과장이 아니라 오히려 뒤처진 숫자였다.</a></li>
+      <li class="note">다만 열린 이슈 822개, 열린 PR 407개. 성숙한 도구가 아니라 아직 빠르게 흔들리는 프로젝트라는 신호다. 팀 표준으로 밀 단계는 아니고 개인 실험용이다.</li>
+      <li class="note">voice(네이티브 오디오 백엔드), mnemopi(메모리·세션 핸드오프) 같은 서브시스템까지 직접 만들고 있다. 범위가 계속 넓어지는 중이라 안정 버전을 기다릴 이유도 있다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">가져갈 것</div>
+    <ul class="kplist">
+      <li class="note">당장 툴을 갈아탈 게 아니라도, &#39;에이전트 성능은 모델보다 도구 하네스에서 갈린다&#39;는 가설을 검증 가능한 형태로 밀어붙인 사례라 설계 참고감으로 가치가 있다.</li>
+      <li class="note">우리 쪽 에이전트 자동화에 적용할 지점: 반복 호출되는 셸 명령의 출력 파싱을 스키마 있는 도구 호출로 바꾸는 것, 그리고 서브에이전트 결과를 자유 텍스트가 아닌 검증된 구조로 받는 것.</li>
+      <li class="note">소스는 요약 계정(@think.5x)이라 스펙 나열 이상은 없다. 실제 판단은 리포와 이슈 트래커를 직접 봐야 한다.</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@think.5x/post/DZE-M72k2ZK">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐 최고령(68일) 항목. 소개글 자체는 얕지만 리포를 직접 확인하니 &#39;도구 하네스 설계&#39;라는 오래 가는 논점이 있어 그 축으로 재구성했다.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

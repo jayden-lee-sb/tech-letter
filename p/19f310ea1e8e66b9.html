@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fable 5 실전 가이드: 병목은 모델이 아니라 내가 모르는 것</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@choi.openai · 2026-07-05 자가발송</span>
+  </div>
+  <h1>Fable 5 실전 가이드: 병목은 모델이 아니라 내가 모르는 것</h1>
+
+  <div class="scorebar">
+    <span class="big">76</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 22/25 · 신규성 10/15 · 최신성 4/10 · momentum 7/10<br>깊이 12/15 · 지속가치 13/15 · 신뢰도 8/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">핵심 프레임</div>
+    <ul class="kplist">
+      <li><a class="repo" href="https://x.com/trq212/status/2073100352921215386">Claude Code를 만드는 Thariq는 Fable 5를 &#39;작업 품질이 모델이 아니라, 내가 모르는 것(unknown)을 얼마나 명확히 하느냐에서 막히는 첫 모델&#39;이라고 표현한다. 역대 최강이 나오자 병목이 사람 쪽으로 넘어왔다는 진단이다.</a></li>
+      <li class="note">&#39;지도는 영토가 아니다.&#39; 지도는 내가 주는 프롬프트·스킬·컨텍스트고, 영토는 실제 코드베이스와 현실의 제약이다. unknown은 그 둘 사이의 간극이며, 맡기는 작업이 커질수록 Claude가 혼자 추론해 메워야 하는 지점이 기하급수로 늘어난다.</li>
+      <li class="note">unknown을 네 칸으로 나눈다. 아는 걸 아는 것(프롬프트에 적은 그대로)과 모르는 걸 아는 것(아직 못 정했다는 걸 아는 것)은 쉽다. 어려운 쪽은 너무 당연해서 안 적는 것(unknown knowns)과 아예 고려조차 안 한 것(unknown unknowns)이다.</li>
+      <li class="note">지시는 균형 문제다. 너무 구체적이면 방향을 트는 게 나을 때조차 시킨 대로만 가고, 너무 모호하면 업계 표준을 가정해 내 일에 안 맞는 선택을 한다. unknown을 계산하지 않으면 양쪽으로 다 실패한다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">착수 전에 unknown 꺼내는 법</div>
+    <ul class="kplist">
+      <li class="note">blindspot pass(사각지대 훑기): 낯선 코드베이스나 익숙하지 않은 일에 들어갈 때 &#39;내가 놓친 unknown unknowns를 찾아서 설명해줘&#39;를 먼저 시킨다. 내가 누구고 무엇을 아는지 맥락을 같이 주는 게 핵심이다. 탐색은 Claude가 나보다 빠르니 이 비용이 싸다.</li>
+      <li class="note">봐야 아는 것(unknown knowns)은 프로토타입으로 끌어낸다. 구현에 들어간 뒤 발견하면 비싸므로, 백엔드 없이 버튼 하나 올린 화면을 HTML로 뽑아 반응부터 본다. 시각 디자인처럼 말로 설명 못 하는 건 서로 다른 4개 방향을 한 번에 뽑아 놓고 고른다.</li>
+      <li class="note">브레인스토밍 뒤에도 남는 애매함은 역질문으로 처리한다. &#39;애매한 지점을 한 번에 한 질문씩 나를 인터뷰해줘, 특히 내 답이 아키텍처를 바꿀 만한 질문부터.&#39; 결정을 앞에서 끝내고 구현에는 확정된 것만 넘긴다.</li>
+      <li class="note">말로 안 되는 건 레퍼런스로 대신하고, 제일 좋은 레퍼런스는 스크린샷이 아니라 소스코드다. 원하는 동작이 이미 구현된 폴더를 가리키며 &#39;이 동작을 그대로 옮겨줘&#39;라고 하면 마크업·구조·조립 방식까지 정확히 넘어간다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">구현 단계의 규율</div>
+    <ul class="kplist">
+      <li class="note">계획서를 받을 때 순서를 지정한다. 데이터 모델 변경·새 타입 인터페이스·사용자에게 보이는 흐름처럼 내가 가장 손댈 것 같은 결정은 맨 앞, 기계적 리팩터링은 맨 뒤. 바뀔 게 앞에 있어야 내가 빨리 고친다.</li>
+      <li class="note">구현 중 튀어나오는 unknown은 기록으로 흡수한다. implementation-notes.md를 두고, 계획에서 벗어나야 하면 보수적인 쪽을 택해 Deviations에 적고 계속 가게 한다. 세션은 잊어도 파일은 남는다.</li>
+      <li class="note">마무리는 두 가지로 닫는다. 하나는 프로토타입·스펙·구현 노트를 한 문서로 묶고 데모 GIF를 맨 앞에 둔 승인용 자료(리뷰어도 나와 같은 unknown에서 출발한다). 다른 하나는 변경 내용으로 Claude가 나를 시험 보게 만드는 퀴즈이고, 그걸 다 맞히기 전에는 병합하지 않는다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">다른 가이드와 겹치는 지점</div>
+    <ul class="kplist">
+      <li class="note">같은 규율이 여러 곳에서 반복된다. systematicls의 &#39;연구용 에이전트에게 조사·결정을 시킨 뒤 구현용 에이전트에 깨끗한 문맥을 새로 준다&#39;, Boris Cherny의 &#39;복잡한 작업은 plan 모드부터, 하나가 계획하고 다른 하나가 staff 엔지니어처럼 리뷰한다&#39;, &#39;CLAUDE.md를 고쳐 다음엔 같은 실수를 막는다&#39;가 전부 unknown을 앞에서 없애는 같은 동작이다.</li>
+      <li class="note">종료 조건도 같은 얘기다. &#39;에이전트는 끝내는 법을 모른다, 테스트나 스크린샷 같은 명확한 종료 조건을 줘라&#39;와 &#39;이게 동작한다는 걸 증명해줘, 내가 통과하기 전엔 PR 만들지 마&#39;는 사람이 검증을 통과해야 끝난다는 한 가지 규율이다.</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">사례와 남는 질문</div>
+    <ul class="kplist">
+      <li class="note">Fable 런칭 영상 자체가 이 방법의 사례다. 영상 편집을 모르던 Thariq는 &#39;코드로 영상을 자르고 자막을 딸 수 있다&#39;는 자기가 아는 지점에서 출발해 Whisper 전사 정확도, ffmpeg로 공백 컷, Remotion 프로토타입을 차례로 확인했다. 마지막 관문인 색보정은 변형을 뽑아 고르려다, 자기가 &#39;잘된 색보정&#39;을 모른다는 걸 깨닫고 색보정 자체를 배우는 쪽으로 방향을 바꿨다.</li>
+      <li class="note">긴 작업이 틀린 채 돌아오면 대개 모델이 부족한 게 아니라, 내가 unknown을 덜 정의했거나 Claude가 그 사이를 메울 계획을 못 받은 것이다. 정리하는 사람은 이 4분면을 조하리의 창과 연결한다. 조하리에서 맹점은 타인이 말해줘야 줄어드는데, 여기서 그 타인 역할을 Claude가 맡는다.</li>
+      <li class="note">읽을 때 감안할 점 하나. 구독 요금제로 Fable 5를 쓸 수 있던 기간(7월 7일까지)은 이미 지났지만, 이 글이 다루는 건 모델 접근권이 아니라 작업 방식이라 지금 쓰는 모델에 그대로 적용된다.</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/@choi.openai/post/DaXNultjy9x">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐 최고령권(44일) 항목이면서, 매일 쓰는 도구의 작업 방식을 바꾸는 1차 가이드라 먼저 발행.</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

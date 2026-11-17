@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Duet: Anthropic 직원들의 능동형 에이전트 사용 사례 8가지</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@just_ai_case · 2026-11-04 자가발송</span>
+  </div>
+  <h1>Claude Duet: Anthropic 직원들의 능동형 에이전트 사용 사례 8가지</h1>
+
+  <div class="scorebar">
+    <span class="big">59</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 15/25 · 신규성 9/15 · 최신성 7/10 · momentum 9/10<br>깊이 6/15 · 지속가치 7/15 · 신뢰도 6/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">Duet이 뭔가</div>
+    <ul class="kplist">
+      <li class="note">Anthropic이 10/21 공개한 &#39;먼저 움직이는&#39; 상시 에이전트 앱. Opus 5.5 기반 리서치 프리뷰</li>
+      <li class="note">매일 아침 연결 앱을 훑어 브리핑하고, 몇 시간마다 재확인해 챙길 일이 생길 때만 말을 건다</li>
+      <li class="note">자체 클라우드 컴퓨터·브라우저에서 돌아가서 앱을 닫고 자리를 비워도 작업이 이어진다</li>
+      <li class="note">메시지 전송·결제·서명·삭제 같은 민감 작업은 할 일을 미리 보여주고 승인 후 실행. 카드 번호 등을 넘기지 않는 분류기도 탑재</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">직원 사용 사례 (패턴별)</div>
+    <ul class="kplist">
+      <li class="note">모바일 우선 운영: 걸으면서 프롬프트를 던지고, 즉답 가능한 건 즉답·깊은 조사는 시간 들여 처리 (Boris Cherny)</li>
+      <li class="note">알림 필터: 알아야 할 것만 먼저 가져와서 휴대폰에서 Slack을 지움. 묻혀 있던 &#39;내 PR이 만든 이슈&#39; 대화를 찾아줌</li>
+      <li class="note">비서실장 역할: 하루 목표를 잡고 중간에 &#39;아직 이건 안 끝났다&#39;를 체크 (Mike Krieger)</li>
+      <li class="note">후속 조치 회수: 통화 뒤 할 일을 정리하고, 허락하면 일부는 직접 처리</li>
+      <li class="note">틈새 일 잡기: 반려견 약 자동배송 취소를 메일에서 발견해 최저가 약국으로 재예약. 집 구하기는 매물 비교표·조건 필터·투어 예약까지</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">실무 시사점</div>
+    <ul class="kplist">
+      <li class="note">핵심은 &#39;시키지 않아도 먼저 챙김&#39;. 리액티브 챗봇에서 주기적 polling + 판단 + 승인 게이트 구조로 무게중심이 옮겨가는 중</li>
+      <li class="note">승인 경계를 &#39;되돌릴 수 없는 외부 행동&#39;(전송·결제·삭제)에 두는 설계는 사내 자동화 에이전트에도 그대로 가져다 쓸 만한 기준</li>
+      <li class="note">아침 다이제스트 + 미완료 체크는 지금 쓰는 스케줄 자동화(cron 에이전트)로도 흉내 낼 수 있는 패턴</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">제약·주의</div>
+    <ul class="kplist">
+      <li class="note">미국 Pro·Max 구독자 대상 대기자 명단만. 팀·엔터프라이즈 제외, 한국 출시 미정</li>
+      <li class="note">별도 요금 없이 Claude 사용 한도를 공유하고, 큰 작업일수록 한도를 더 소모</li>
+      <li class="note">글 맥락을 잘못 읽는 경우가 아직 있어 결과 확인은 필요. 사례는 공식 계정이 고른 것이라 선택 편향 감안</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/share/BAav5UODeI">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 가장 최근 메일. 프로액티브 에이전트로 넘어가는 흐름과 승인 경계 설계를 구체 사례로 보여줌</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>

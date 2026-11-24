@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>로렌 탄(Cursor·그록봇): 사람 관리 기술로 에이전트 무리를 굴리는 법</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+           --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  }
+  :root[data-theme="light"]{ --bg:#fbfbfa; --card:#fff; --ink:#1c1c1e; --sub:#6b6b70; --line:#ececec;
+    --accent:#3a6df0; --pill:#eef2ff; --pillink:#3a4fd0; --quote:#f4f5f7; }
+  :root[data-theme="dark"]{ --bg:#111214; --card:#1a1c1f; --ink:#eceded; --sub:#9a9aa0; --line:#2a2d31;
+    --accent:#7aa0ff; --pill:#1e2740; --pillink:#aebfff; --quote:#202327; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 20px 64px}
+  @media(min-width:720px){ .wrap{padding:28px 28px 72px} }
+  .top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .back{color:var(--sub);text-decoration:none;font-size:13.5px}
+  .tt{margin-left:auto;border:1px solid var(--line);background:var(--card);color:var(--sub);
+    width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .src{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--pill);color:var(--pillink)}
+  .tag{color:var(--sub);font-size:12.5px}
+  h1{font-size:22px;line-height:1.3;letter-spacing:-.02em;margin:2px 0 16px}
+  .scorebar{display:flex;gap:14px;align-items:baseline;padding:11px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;margin:0 0 24px;flex-wrap:wrap}
+  .big{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+  .scorebar .lbl{font-size:12px;color:var(--sub)}
+  .dims{margin-left:auto;font-size:11.5px;color:var(--sub);line-height:1.5}
+  h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);
+    margin:22px 0 10px;font-weight:700}
+  .kp{margin:14px 0}
+  .kpcat{font-weight:650;margin-bottom:4px}
+  .kplist{list-style:none;margin:0;padding:0}
+  .kplist li{margin:4px 0;padding-left:15px;position:relative;color:var(--ink)}
+  .kplist li:before{content:"·";position:absolute;left:3px;color:var(--sub);font-weight:700}
+  .kplist .note{color:var(--sub)}
+  a.repo{color:var(--accent);text-decoration:none;font-weight:600;
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  a.repo:hover{border-bottom-color:var(--accent)}
+  .essence{background:var(--quote);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--sub)}
+  .links{margin-top:26px}
+  .links a{display:inline-block;text-decoration:none;font-size:13.5px;font-weight:600;
+    padding:9px 18px;border-radius:10px;border:1px solid var(--line);color:var(--accent);background:var(--card)}
+  .basis{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub)}
+  .basis b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="../index.html">← Reading List</a>
+    <button class="tt" id="tt" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
+  </div>
+
+  <div class="meta">
+    <span class="src">threads</span>
+    <span class="tag">@unclejobs.ai · 2026-08-28 자가발송</span>
+  </div>
+  <h1>로렌 탄(Cursor·그록봇): 사람 관리 기술로 에이전트 무리를 굴리는 법</h1>
+
+  <div class="scorebar">
+    <span class="big">46</span><span class="lbl">추천도</span>
+    <span class="dims">실용성 10/25 · 신규성 8/15 · 최신성 4/10 · momentum 6/10<br>깊이 5/15 · 지속가치 9/15 · 신뢰도 4/10</span>
+  </div>
+
+  <h2>핵심 포인트</h2>
+
+  <div class="kp">
+    <div class="kpcat">누구인가</div>
+    <ul class="kplist">
+      <li class="note">닉네임 포테이토, 로렌 탄. 넷플릭스 테크리드·EM 2년, 메타에서 React Compiler 개발, 현재도 React 코어 팀</li>
+      <li class="note">Cursor 합류 5개월 차에 스페이스X의 Cursor 인수 이후 그록봇을 무대에서 소개한 인물</li>
+      <li><a class="repo" href="https://www.no.lol/">2014년 임포스터 신드롬 극복기를 쓴 개인 블로그가 지금도 그대로 남아 있음</a></li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">핵심 통찰: 매니지먼트 = 에이전트 관리</div>
+    <ul class="kplist">
+      <li class="note">사람을 관리하던 기술과 에이전트 무리를 관리하는 기술은 평행선이 많다는 게 워크숍의 중심 메시지</li>
+      <li class="note">역할은 좋은 백시트 드라이버. 페어 프로그래밍에서 동료에게 질문하듯, 에이전트 운전을 지켜보다 필요한 순간에만 개입</li>
+      <li class="note">EM 경험이 있는 사람에게 유리한 전환이라는 뜻이기도 함. 위임·검증·피드백 루프가 그대로 이식됨</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">숫자로 본 운영 수준</div>
+    <ul class="kplist">
+      <li class="note">아침에 일어나면 에이전트가 만든 PR 20개, 그록봇 전체 리팩토링에 PR 600개 이상</li>
+      <li class="note">현재는 에이전트 PR 자동 머지까지 도달. 단, 본인 표현으로 5개월 동안 신뢰 곡선을 올라온 결과</li>
+      <li class="note">하나를 못 믿으면 백 개를 못 띄운다: 병렬 확장의 전제는 단일 에이전트에 대한 신뢰 확보</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">적용 포인트</div>
+    <ul class="kplist">
+      <li class="note">강한 제약(타입·린트·테스트·아키텍처 경계)으로 시작한 코드베이스라서 디자이너·PM·영업도 직접 기능을 넣고, 밤사이 회귀 걱정이 줄었다는 주장</li>
+      <li class="note">우리 팀 관점: 자동 머지를 목표로 삼기 전에 제약을 먼저 깔고, 신뢰 단계를 명시적으로 올리는 순서가 맞다는 근거</li>
+      <li class="note">개인 에이전트 스택 이름은 PStack(포테이토 스택), Garry Tan의 GStack 패러디</li>
+    </ul>
+  </div>
+
+  <div class="kp">
+    <div class="kpcat">읽을 때 주의</div>
+    <ul class="kplist">
+      <li class="note">원문은 강연 자체가 아니라 인플루언서 계정의 인물 스토리텔링 재구성이라 메커니즘·설정 디테일은 없음</li>
+      <li class="note">메일 메모대로 원 워크숍 영상을 직접 찾아보는 게 다음 액션. 신뢰 곡선 단계와 제약 설계의 실제 내용이 거기 있을 것</li>
+    </ul>
+  </div>
+
+  <div class="links"><a href="https://www.threads.com/share/BAiyX9-LE0/">원문 읽기 ↗</a></div>
+
+  <div class="basis">선정 배경 · 큐에서 가장 오래 기다린 항목(8/28). 깊이는 얕지만 EM 관점의 에이전트 운영 원칙이 담겨 oldest 슬롯으로 발행</div>
+</div>
+
+<script>
+  var r=document.documentElement, b=document.getElementById('tt'), KEY='rl-theme';
+  var saved=localStorage.getItem(KEY); if(saved) r.setAttribute('data-theme', saved);
+  function cur(){ return r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  b.addEventListener('click', function(){ var n=cur()==='dark'?'light':'dark'; r.setAttribute('data-theme', n); localStorage.setItem(KEY, n); });
+</script>
+</body>
+</html>
